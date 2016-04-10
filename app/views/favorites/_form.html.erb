@@ -1,0 +1,10 @@
+<%= simple_form_for @favorite, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :name %>
+  <%= f.association :user, :include_blank => true %>
+  <%= f.association :district, :include_blank => true %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                favorites_path, :class => 'btn btn-default' %>
+<% end %>

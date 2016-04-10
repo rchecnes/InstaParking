@@ -1,0 +1,173 @@
+/*Login*/
+.login{
+   margin-left: 40%;
+   margin-right: 40%;
+}
+
+.login .simple_form{
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid #d8dee2;
+}
+
+.btn-default{
+    color: #fff;
+    background-color: #FF9800;
+}
+
+.login h2{
+    text-align: center;
+}
+
+.user_remember_me{
+    margin-left: 20px;
+}
+.navbar-default{
+    background-color: #3A3838;
+}
+
+.navbar-default .navbar-brand {
+    color: #d9534f
+}
+.navbar-default .navbar-brand:hover {
+    color: #FF9800
+}
+.navbar-default .navbar-nav > li > a {
+    color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a:hover {
+    color: #8E8989;
+}
+
+a:visited {
+    color: #FFFFFF;
+}
+
+.navbar{
+    margin-bottom: 0px;
+}
+
+.navbar-default a{
+    color: #FFFFFF;
+}
+.home-footer p{
+    color: #FFFFFF;
+}
+.home-footer{
+    margin-top: 30px;
+}
+/*Home*/
+.home-img-parque{
+    width: 100%;
+    max-height: 500px;
+    min-height: 300px;
+}
+
+.home-detalle{
+    margin-top:40px;
+}
+
+.home-footer {
+    background-color: #272727;
+    bottom: 0;
+    color: #aaa;
+    left: 0;
+    overflow: hidden;
+    right: 0;
+    width: 100%;
+    min-height: 50px;
+}
+
+#nosotros{
+    margin-top: 135px;
+    text-align: center;
+}
+
+#welcome
+.titulo{
+    text-align: center;
+}
+
+.form-control{
+    width: 95%;
+}
+
+.main-container{
+    margin-left: 5px;
+    margin-right: 0px;
+}
+
+.col-fila-2{
+   padding-right: 0px;
+}
+
+/*Resultado de una busqueda*/
+.resultado-buqueda{
+    border: 4px solid #cccccc;
+    min-height: 200px;
+    max-height: 400px;
+    overflow: auto;
+    margin-top: 10px;
+}
+
+
+/*Reservas*/
+.cark_imagen{
+    width: 80px;
+    height: 80px;
+    margin-top: 20px;
+}
+
+.cark-distrito{
+    font-size: 20px;
+    padding-bottom: 0px;
+}
+
+.cark-direccion{
+    font-size: 12px;
+}
+
+.cark_fila{
+    border-bottom: 1px solid #cccccc;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.cark-precio{
+    font-size: 25px;
+}
+
+.columna-uno{
+   border-right: 1px solid #cccccc;
+}
+
+.error{
+    color: red;
+    font-size: 13px;
+}
+
+#modal-window{
+    width: 573px;
+    margin: auto;
+    max-height: 292px;
+    background-color:#ffffff;
+    border-radius: 6px;
+}
+
+
+/*admin*/
+#page-wrapper-admin{
+    margin-top: 20px;
+}
+
+.container-admin{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.alert-success{
+    margin-top: 20px;
+}
+

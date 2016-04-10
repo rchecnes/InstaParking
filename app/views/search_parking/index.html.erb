@@ -1,0 +1,169 @@
+<div class="main-container">
+    <form id="form_search" name="form_search">
+        <div class="col-fila-1 col-lg-4 col-md-4 col-sm-4 col-xs-12 columna-uno">
+            <h1 class="page-header">Search Parking</h1>
+            <div>
+                <div class="col-lg-6">
+                    <div class="form-group string optional">
+                        <label class="string optional control-label" for="district">District</label>
+                        <select id="district" name="district" class="optional form-control">
+                            <option value="">All</optio>
+                            <% @districts.each do |rts| %>
+                                <option value="<%=rts.id%>"><%= rts.name %></optio>
+                            <% end %>
+                            <option value="00">00</option>
+                        </select>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group string optional">
+                        <label class="string optional control-label" for="started_at">Started at</label>
+                        <input class="string optional form-control datepicker" type="text" name="started_at" id="started_at">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group string optional">
+                        <label class="string optional control-label" for="ended_at">Ended at</label>
+                        <input class="string optional form-control datepicker" type="text" name="ended_at" id="ended_at">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group string optional">
+                        <label class="string optional control-label" for="started_time">Started time</label>
+                        <input class="string optional form-control time" type="text" name="started_time" id="started_time">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group string optional">
+                        <label class="string optional control-label" for="ended_time">Ended time</label>
+                        <input class="string optional form-control time" type="text" name="ended_time" id="ended_time">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group string optional">
+                        <label class="string optional control-label" for="reservation_type">Reservation Type</label>
+                        <select id="reservation_type" name="reservation_type" class="optional form-control">
+                            <option value="">All</optio>
+                            <% @reservation_types.each do |rts| %>
+                                <option value="<%=rts.id%>"><%= rts.name %></optio>
+                            <% end %>
+                            <option value="00">00</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--<input type="button" name="seach" value="Search" class="btn btn-default btn-primary">-->
+                    <button type="button" id="search" class="btn btn-primary btn-sm">Search</button>
+                    <%= link_to 'Add favorite', list_favorite_path('to'),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', 'class' => 'btn btn-warning btn-sm'}%>
+                </div>
+            </div>
+            <div class="resultado-buqueda" id="resultado_buqueda"></div>
+        </div>
+        
+        <div class="col-fila-2 col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <%=  image_tag "mapa.jpg", :class =>'img-responsive' %> 
+        </div>
+    </form>
+ </div>
+ 
+ <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">My Favorites</h3>
+    </div>
+    <div class="modal-body" id="modal_content">
+      **here comes whatever you want to show!**
+    </div>
+    <div class="modal-footer">
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>-->
+      <!--<button class="btn btn-primary">Save changes</button>-->
+    </div>
+  </div>
+  
+<script>
+    $(document).ready(function(){
+       //console.log("hola");
+       
+       $('.datepicker').datepicker({
+          format: 'yyyy-mm-dd',
+          autoclose: true,
+          keyboardNavigation : true
+        });
+        
+      listarCarPark = function(){
+          //console.log(JSON.stringify(form_search));
+           var data = {
+               district: $("#district").val(),
+               reservation_type: $("#reservation_type").val(),
+               started_at: $("#started_at").val(),
+               ended_at: $("#ended_at").val(),
+               started_time: $("#started_time").val(),
+               ended_time: $("#ended_time").val()
+           }
+           
+           $.ajax({
+              type:"GET",
+              url:"search_parking/list_park",
+              data: data,
+              dataType:"json",
+              success:function(result){
+                printHtml(result);
+              }
+            });
+      }
+        
+       $("#search").on("click",function(){
+           listarCarPark();
+       })
+       
+
+       printHtml = function(data){
+           var html='';
+           //console.log(data);
+           
+           if(data.length>0){
+               for (var i = 0; i < data.length; i++) {
+                   //console.log(data[i].address);
+                   html += '<div class="row cark_fila">';
+                       html += '<div class="col-lg-3"><%=  image_tag "how-it-works-park.png", :class =>'cark_imagen' %></div>';
+                       html += '<div class="col-lg-9">';
+                           html += '<h1 class="cark-distrito"><strong>District:</strong> '+data[i].district.name+'</h1>';
+                           html += '<p class="cark-direccion"><strong>Address:</strong> '+data[i].address+'</p>';
+                           html += '<p class=""><strong>Started at:</strong> '+data[i].started_at+'  <strong>Ended at:</strong> '+data[i].ended_at+'</p>';
+                           html += '<p class=""><strong>Started time:</strong> '+data[i].started_time+'  <strong>Ended time:</strong> '+data[i].ended_time+'</p>';
+                           html += '<p class="cark-precio"><strong>Price:</strong> $ '+data[i].price+' hour</p>';
+                           html += '<p><button type="button" id="btn_reservar" onclick="reserve('+data[i].id+')" value="'+data[i].id+'" class="btn btn-success btn-sm">Reserve</button></p>';
+                       html += '</div>';
+                   html += '</div>';
+               }
+           }else{
+               html += "<p clas='error'>No hay parqueo disponible</p>"
+           }
+           
+           $("#resultado_buqueda").html(html);
+       }
+       
+       
+       
+       reserve = function(id){
+          //console.log("holaaa");
+          
+          if(confirm("¿Esta seguro que quiere reservar?")){
+              $.ajax({
+              type:"POST",
+              url:"search_parking/reserve",
+              data: {'id':id},
+              dataType:"json",
+              success:function(code){
+                 listarCarPark();
+                alert("Su reserva se realizó con éxito, su código de reserva es: R00000000"+code);
+              }
+            });
+          }
+      };
+       
+});
+</script>

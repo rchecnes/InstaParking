@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  started_at: 2016-03-24
+  ended_at: 2016-03-24
+  started_time: 2016-03-24 16:53:17
+  ended_time: 2016-03-24 16:53:17
+  user_id: 
+  car_park_id: 
+
+two:
+  code: MyString
+  started_at: 2016-03-24
+  ended_at: 2016-03-24
+  started_time: 2016-03-24 16:53:17
+  ended_time: 2016-03-24 16:53:17
+  user_id: 
+  car_park_id: 

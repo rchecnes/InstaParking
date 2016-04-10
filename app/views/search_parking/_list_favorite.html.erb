@@ -1,0 +1,33 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th>Name</th> 
+          <th>User</th>
+          <th>District</th>
+          <th>Options</th>
+        </tr>
+  </thead>
+  <tbody>
+    <% @favorites.each do |favorite| %>
+      <tr>
+        <td><%= favorite.name %></td>
+        <td><%= favorite.user.email %></td>
+        <td><%= favorite.district.name %></td>
+        <td>
+         <button type="button" id="add_favorite" onclick="add_favorite(<%= favorite.district.id%>)" value="<%= favorite.district.id%>" class="btn btn-primary btn-sm">Add</button>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script>
+    $(document).ready(function(){
+        
+        add_favorite = function(id){
+            $("#district").val(id);
+           $(".close").click();
+        }
+        
+    });
+</script>

@@ -1,0 +1,14 @@
+<%= simple_form_for @reservation, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :code %>
+  <%= f.input :started_at %>
+  <%= f.input :ended_at %>
+  <%= f.input :started_time %>
+  <%= f.input :ended_time %>
+  <%= f.input :user_id %>
+  <%= f.input :car_park_id %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                reservations_path, :class => 'btn btn-default' %>
+<% end %>
